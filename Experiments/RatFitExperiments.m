@@ -39,6 +39,7 @@ hold off
 
 
 %% Section 3: Sine
+x = linspace(-1,12,200); x=x';
 y = sin(x); y2 = y + 0.1*randn(size(y)); 
 
 figure(3) %plot first few iterations
@@ -78,7 +79,7 @@ semilogy(1:maxiter,update_norm,'r')
 title('Error for Degree 16')
 xlabel('Iteration')
 ylabel('Error (log scale)')
-legend('\infty norm','2 norm','norm of update')
+legend('\infty norm','2 norm','norm of update','location','best')
 hold off
 
 

@@ -15,15 +15,15 @@ function [coeffs] = trop_mmae_fit(x,y,d)
 % Outputs: coeffs - vector of length d+1 containing the coefficients of q.
 %                   The minimizing polynomial is then 
 %
-%                   q(t) = max(t + coeffs(1), 2*t + coeffs(2), ...
-%                                 d*t + coeffs(d), coeffs(d+1));
+%                   q(t) = max(t + coeffs(2), 2*t + coeffs(3), ...
+%                                 d*t + coeffs(d+1), coeffs(1));
 %
 % Example Usage: 
 %
 % x = [0; 1; 2]; y = [0;0;1]; d= 2;
 %
-% coeffs = trop_mmae_fit(x,y,d);
-% returns coeffs = [-1;-3;0]
+% coeffs = trop_poly_subfit(x,y,d);
+% returns coeffs = [0;-1;-3]
 
 N = numel(x);
 %X = [x*(1:d) zeros(size(x))];

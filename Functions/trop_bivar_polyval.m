@@ -14,9 +14,9 @@ function [val] = trop_bivar_polyval(X,coeffs, d)
 
 
 inc = d(1)+1; %size of blocks
-val = trop_polyval(X(:,1), [coeffs(2:inc); coeffs(1)]);
+val = trop_polyval(X(:,1), coeffs(1:inc));
 for t = 1:d(2) %each "power" of variable 2
-    val = max(val, t*X(:,2) + trop_polyval(X(:,1), [coeffs((t*inc+2):(t+1)*inc); coeffs(t*inc + 1)]));
+    val = max(val, t*X(:,2) + trop_polyval(X(:,1), coeffs((t*inc+1):(t+1)*inc)));
 end
 
 end

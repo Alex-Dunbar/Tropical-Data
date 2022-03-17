@@ -26,7 +26,7 @@ function [num_coeffs, den_coeffs,err,L2_err,update_norm,l2_loss_grad] = trop_rat
 %
 
 %initialize coefficients
-num_coeffs = -Inf*ones(d+1,1);den_coeffs = [-Inf*ones(d,1);-mean(y)];
+num_coeffs = -Inf*ones(d+1,1);den_coeffs = [-mean(y); -Inf*ones(d,1)];
 
 %initialize error outputs
 err = zeros(max_iter,1);
@@ -45,6 +45,17 @@ for k = 1:max_iter
     %compute the fit, l^infty loss, and l^2 loss
     fit = trop_polyval(x,num_coeffs) - trop_polyval(x,den_coeffs);
     err(k) = norm( fit - y,"inf");
+    
+    %Work on this to output information about model when large jump in
+    %error occurs.
+    %
+    %if k >= 80 
+    %    if abs(err(k)) <= 0.95*abs(err(k-1))
+    %        num_update = num_coeffs - num_coeffs_old;
+    %        den_update = den_coeffs - den_coeffs_old;
+    %    end
+    %end
+
     L2_err(k) = norm(fit - y)/norm(y);
 
     [num_grad,den_grad] = trop_rat_2_loss_grad(num_coeffs,den_coeffs,x,y);

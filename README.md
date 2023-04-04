@@ -1,5 +1,5 @@
 # Tropical-Data
-MATLAB Files for Tropical Algebra and Data Project. The files are divided into two folders, Functions and Experiments.
+MATLAB Files for Alternating Minimization for Regression with Tropical Rational Functions. The files are divided into two folders, Functions and Experiments.
 
 ## Functions
 
@@ -7,37 +7,19 @@ This folder contains the MATLAB functions used to compute tropical rational appr
 
 Contents:
 
-bivar_trop_polyfit.m -- Fit infinity norm minimizing bivariate tropical polynomial to given data
+trop_nvar_polyfit.m -- Find the optimal infinity norm solution to the multivariate tropical polynomial regression problem
 
-trop_bivar_polyval.m -- Evaluate a bivariate tropical polynomial
+trop_nvar_polyval.m -- Evaluate a multivariate tropical polynomial at a set of points
 
-trop_bivar_rat_fit.m -- Use an alternating minimization method to approximate given data with a bivariate tropical rational function
-
-trop_mat_dual_mult.m -- compute min-plus matrix vector multiplication
-
-trop_mat_mult.m      -- compute max-plus matrix vector multiplication
-
-trop_poly_subfit.m   -- find optimal subsolution for univariate polynomial fitting
-
-trop_polyval.m       -- Evaluate a univariate tropical polynomial
-
-trop_rat_fit.m       -- Use an alternating minimization method to approximate given data with a univariate tropical rational function
-
-Still needs work:
-
-trop_rat_2_fit.m     -- Fit a tropical rational function to data using an approximate gradient descent on the squared l2 loss
-
-trop_rat_2_loss_grad.m -- Approximate the gradient of the squared l2 loss of a tropical rational approximation to data.
+trop_nvar_rat_fit.m -- Use the alternating method to fit a multivariate tropical rational function to data. 
 
 
 ## Experiments
 
-This folder contains the MATLAB functions used in Experiments for fitting tropical rational functions to data. 
+This folder contains the MATLAB functions used in experiments for fitting tropical rational functions to data. 
 
 Contents:
 
-Bivariate_Trop_Regression_Experiments.m -- Experiments with bivariate tropical rational regression
+Multivariate_Trop_Regression_Experiments.m -- Experiments with multivariate tropical rational regression
 
-PolyfitExperiments.m                    -- Reproduce tropical polynomial fitting examples in Maragos and Theodosis 2019 Tropical Geometry and Piecewise Linear Approximation on Weighted Lattices
-
-RatFitExperiments.m                     -- Experiments with univariate tropical rational regression
+Univariate_Trop_Regression_Experiments.m   -- Experiments with univariate tropical rational regression

@@ -23,3 +23,5 @@ Contents:
 Multivariate_Trop_Regression_Experiments.m -- Experiments with multivariate tropical rational regression
 
 Univariate_Trop_Regression_Experiments.m   -- Experiments with univariate tropical rational regression
+
+![example](images/RationalFunction.png)

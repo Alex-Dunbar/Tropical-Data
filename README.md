@@ -22,6 +22,8 @@ Contents:
 
 Multivariate_Trop_Regression_Experiments.m -- Experiments with multivariate tropical rational regression
 
+Network Initialization.ipynb               -- Experiments using tropical rational approximation to initialize ReLU neural networks
+
 Univariate_Trop_Regression_Experiments.m   -- Experiments with univariate tropical rational regression
 
 ![example](images/RationalFunction.png)

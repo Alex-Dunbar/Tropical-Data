@@ -16,7 +16,7 @@ trop_nvar_rat_fit.m -- Use the alternating method to fit a multivariate tropical
 
 ## Experiments
 
-This folder contains the MATLAB functions used in experiments for fitting tropical rational functions to data. 
+This folder contains the MATLAB functions used in experiments for fitting tropical rational functions to data as well as a Jupyter Notebook with experiments using tropical rational approximations of data to initialize ReLU neural networks
 
 Contents:
 

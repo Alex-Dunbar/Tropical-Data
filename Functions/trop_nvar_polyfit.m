@@ -1,4 +1,4 @@
-function [coeffs] = trop_nvar_polyfit(X,y,d)
+function [coeffs,eval] = trop_nvar_polyfit(X,y,d)
 % Computes coefficients of the optimal solution of 
 % 
 %               ||q(x) - y||_infty
@@ -9,8 +9,8 @@ function [coeffs] = trop_nvar_polyfit(X,y,d)
 % (See Maragos and Theodosis 2019 Tropical Geometry and Piecewise 
 % Linear approximation of Curves and Surfaces on Weighted Lattices)
 %
-% Inputs: X - N x 2 matrix of independent data observations
-%         y - vector of dependent data of length n
+% Inputs: X - N x n matrix of independent data observations
+%         y - vector of dependent data of length N
 %         d - length 2 vector of positive integers giving the maximum 
 %             degree in each variable for the tropical polynomial q.
 %
@@ -34,18 +34,26 @@ function [coeffs] = trop_nvar_polyfit(X,y,d)
 d = reshape(d,[numel(d),1]);
 
 row = 0; k = prod(d+1);
-w = zeros(k,1);
+p = zeros(k,1);
 n = numel(d); last = zeros(n,1);
-
+eval = zeros(size(X,1),1);
 
 %Compute min-plus matrix-vector product without forming "Vandermonde"
 
 while any(last < d)
+    u = X*last;
     for j = 1:n
         if last(j)<d(j)
             row = row + 1;
-            w(row) = min(y - X*last);
+            %w(row) = min(y - X*last);
+            p(row) = min(y - u);
+            if row == 1
+                eval = p(row)*ones(size(eval));
+            else
+                eval = max(eval, p(row) + u); %update evaluation of polynomial
+            end
             last(j) = last(j)+ 1;
+            u = u + X(j); %updated (X*last)
             if j > 1
                 last(1:j-1) = 0;
                 break
@@ -56,10 +64,12 @@ while any(last < d)
 end
 
 row = row + 1;
-w(row) = min(y - X*d);
+p(row) = min(y - X*d);
+eval = max(eval,p(row)+X*d);
 
 %shift to minimize infty norm
-mu = 0.5*norm(trop_nvar_polyval(X,w,d) - y,'inf');
-coeffs = w + mu;
+mu = 0.5*norm(y-eval,"inf");
+coeffs = p + mu;
+eval = eval + mu;
 
 end
